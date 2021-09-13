@@ -8,19 +8,20 @@ use App\Models\Candidate;
 class Candidates extends Controller
 {
     public function store(Request $request){
-        $request->validate([
-          'lastname'=> 'required|string|max:255',
-          'firstname'=> 'required|string|max:255',
-          'email'=> 'required|string|email',
-          'position'=> 'required|string|max:255'
-        ]);
+        // $request->validate([
+        //   'lastname'=> 'required|string|max:255',
+        //   'firstname'=> 'required|string|max:255',
+        //   'email'=> 'required|string|email',
+        //   'position'=> 'required|string|max:255'
+        // ]);
 
-        Candidate::create([
-            'firstname' => $request['firstname'],
-            'lastname' => $request['lastname'],
-            'email' => $request['email'],
-            'position' => $request['position']
-        ]);
+        $candidate = new Candidate;
+            $candidate->first_name = $request['firstname'];
+            $candidate->last_name = $request['lastname'];
+            $candidate->email_address = $request['email'];
+            $candidate->position = $request['position'];
+        
+        $candidate->save();
 
         return response("Candidate added successfully",201);
 
