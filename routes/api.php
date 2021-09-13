@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\VoteProcess;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Voters;
 use Illuminate\Support\Facades\Route;
 
 /*
