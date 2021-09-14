@@ -45,4 +45,14 @@ class Voters extends Controller
     public function destroy($id){
         Voter::find($id)->delete();
     }
+
+    public function login(Request $request){
+        $user = Voter::where('admission_number',$request['admissionNumber'])->get()->first();
+        if(!$user){
+            return response("wrong cridentials",403);
+        }
+        
+            return response("Welcome  $user->first_name",200);
+    
+    }
 }
