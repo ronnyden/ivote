@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Voter;
 use Illuminate\Http\Request;
+use Laravel\Sanctum\HasApiTokens;
 
 class Voters extends Controller
 {
+    use HasApiTokens;
     public function store(Request $request){
         // $request->validate([
         //   'firstname'=>'required|string|max:255',
@@ -51,8 +53,15 @@ class Voters extends Controller
         if(!$user){
             return response("wrong cridentials",403);
         }
+     $token =  $user->createToken('personal_access_token')->plainTextToken;
         
-            return response("Welcome  $user->first_name",200);
+            return response($token);
     
+    }
+
+    public function logout(Request $request){
+        $request->user()->currentAccessToken()->delete();
+
+        return response("Logged out",403);
     }
 }
