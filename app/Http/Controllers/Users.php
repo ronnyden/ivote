@@ -27,11 +27,11 @@ class Users extends Controller
     }
     public function login(Request $request){
         $user = Admin::where('email',$request['email'])->get()->first();
-        if(!$user || !Hash::check($request['password'],$user->password)){
+        if(!$user || !Hash::check($request['password'],$user->password))
           return response('Wrong cridentials',403);
-        }else{
+        
             return response("logged in..Welcome",200);
-        }
+        
     }
   
 
