@@ -7,7 +7,7 @@ use App\Models\Candidate;
 
 class Candidates extends Controller
 {
-    public function store(Request $request){
+    public function registerCandidate(Request $request){
         // $request->validate([
         //   'lastname'=> 'required|string|max:255',
         //   'firstname'=> 'required|string|max:255',
@@ -27,6 +27,12 @@ class Candidates extends Controller
 
     }
 
+    public function findCandidate($id){
+        $candidate = Candidate::find($id);
+        return response($candidate);
+    }
+
+
     public function update(Request $request,$id){
         Candidate::find($id)->update([
             'firstname' => $request['firstname'],
@@ -38,7 +44,7 @@ class Candidates extends Controller
         return response("Details updated",200);
     }
 
-    public function destroy($id){
+    public function deleteCandidate($id){
         Candidate::find($id)->delete();
     }
 }
