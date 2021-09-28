@@ -47,7 +47,7 @@ Route::get('/candidate/logout',[Candidates::class,'logout']);
 */
 Route::post('/voter/register',[Voters::class,'store']);
 Route::get('/voter/list',[Voters::class,'index']);
-Route::get('/voter/{id}',[Voters::class,'show']);
+Route::get('/voters/{id}',[Voters::class,'show']);
 Route::put("/voter/update/id",[Voters::class,'update']);
 Route::delete('/voter/delete/{id}',[Voters::class,'destroy']);
 Route::post('/voter/login',[Voters::class,'login']);
