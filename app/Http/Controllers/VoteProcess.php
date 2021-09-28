@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Candidate;
 use App\Models\Position;
+use App\Models\Voter;
 
 class VoteProcess extends Controller
 {
@@ -28,12 +29,24 @@ class VoteProcess extends Controller
         return response($pos);
 
     }
-    public function processVote($id){
-        $candidate = Candidate::find($id);
-        $candidate->update(['votes'=>($candidate->votes + 1)]);
-
-        return response(Candidate::find($id));
-        
+    public function processVote($request,$id){
+        $voter = Voter::find($id);
+     if($voter->has_voted === false){
+            $candidate = Candidate::where('candidate',$request['candidate'] 
+            && 'admissionNumber',$request['admissionNumber'])->get()->first();
+            $candidate->update(['votes'=>($candidate->votes + 1)]);
+        }else{
+            return response("You have voted already and 
+            this is only allowed once");
+        }
         
     }
+
+    public function getCandidateVotes($request){
+        $candidate = Candidate::where('candidate',$request['candidate'] 
+        && 'admissionNumber',$request['admissionNumber'])->get()->first();
+        $total_votes = $candidate->votes;
+        return response($total_votes);
+    }
+
 }

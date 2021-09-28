@@ -10,13 +10,13 @@ class Voters extends Controller
 {
     use HasApiTokens;
     public function store(Request $request){
-        // $request->validate([
-        //   'firstname'=>'required|string|max:255',
-        //   'lastname'=>'required|string|max:255',
-        //   'admissionNumber'=>'required|string|unique',
-        //   'email'=>'required|string|email|unique'
+         $request->validate([
+         'firstname'=>'required|string|max:255',
+          'lastname'=>'required|string|max:255',
+          'admissionNumber'=>'required|string|unique:voters',
+          'email'=>'required|string|email|unique:voters'
 
-        // ]);
+        ]);
     $voter = new Voter;
             $voter->first_name = $request['firstname'];
             $voter->last_name = $request['lastname'];
