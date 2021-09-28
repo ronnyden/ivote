@@ -52,4 +52,13 @@ Route::put("/voter/update/id",[Voters::class,'update']);
 Route::delete('/voter/delete/{id}',[Voters::class,'destroy']);
 Route::post('/voter/login',[Voters::class,'login']);
 Route::post('/voter/logout',[Voters::class,'logout']);
+
+
+
+/*
+__________________________________________________
+|
+|Voting endpoint
+|_________________________________________________
+*/
 Route::post('/vote/{id}',[VoteProcess::class,'processVote']);
