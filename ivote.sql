@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 14, 2021 at 11:35 AM
+-- Generation Time: Sep 28, 2021 at 09:54 AM
 -- Server version: 8.0.26-0ubuntu0.20.04.2
 -- PHP Version: 7.4.22
 
@@ -32,15 +32,16 @@ CREATE TABLE `candidates` (
   `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `position` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `position` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `votes` int NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `candidates`
 --
 
-INSERT INTO `candidates` (`id`, `first_name`, `last_name`, `email_address`, `position`) VALUES
-(1, 'Dennis', 'ronny', 'dr@gmail.com', 'President');
+INSERT INTO `candidates` (`id`, `first_name`, `last_name`, `email_address`, `position`, `votes`) VALUES
+(1, 'Dennis', 'ronny', 'dr@gmail.com', 'President', 0);
 
 -- --------------------------------------------------------
 
@@ -158,16 +159,15 @@ CREATE TABLE `voters` (
   `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `admission_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp(4) NOT NULL,
-  `updated_at` timestamp(4) NOT NULL
+  `has_voted` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `voters`
 --
 
-INSERT INTO `voters` (`id`, `first_name`, `last_name`, `email_address`, `admission_number`, `created_at`, `updated_at`) VALUES
-(1, 'Dennis', 'ronny', 'dr@gmail.com', 'CI/00053/018', '2021-09-13 14:21:04.0000', '2021-09-13 14:21:04.0000');
+INSERT INTO `voters` (`id`, `first_name`, `last_name`, `email_address`, `admission_number`, `has_voted`) VALUES
+(1, 'Dennis', 'ronny', 'dr@gmail.com', 'CI/00053/018', 0);
 
 --
 -- Indexes for dumped tables
